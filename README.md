@@ -49,7 +49,7 @@
     <div class="painel">
         <h1>Parabéns Júlia 🎉</h1>
 
-        <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho fofo apaixonado">
+        <img src="https://media.tenor.com/124xNuBcUCEAAAAj/kulka.gif" alt="Ursinho fofo apaixonado">
 
         <h2>Você é incrível né?? 💖</h2>
 
