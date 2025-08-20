@@ -29,6 +29,7 @@
             border-radius: 10px;
             color: white;
             margin-left: -50px;
+            cursor: pointer;
         }
         #nao{
             position: absolute;
@@ -39,6 +40,7 @@
             border-radius: 10px;
             color: white;
             margin-left: 10px;
+            cursor: pointer;
         }
 
     </style>
@@ -47,21 +49,23 @@
 <body>
 
     <div class="painel">
-        <h1> Parabéns Júlia</h1>
+        <h1>Parabéns Júlia 🎉</h1>
 
-        <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="">
+        <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho fofo apaixonado">
 
-        <h2>Você é incrivel né?? </h2>
+        <h2>Você é incrível né?? 💖</h2>
         
-
-        <a href=https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing><button id="sim" > Sim! </button></a>
-        <button onmouseover="fuja()" id="nao"> Não! </button>
+        <!-- CORREÇÃO: agora o href tem aspas -->
+        <a href="https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing" target="_blank">
+            <button id="sim">Sim!</button>
+        </a>
+        <button onmouseover="fuja()" id="nao">Não!</button>
         
     </div>
 
     <script>
         function fuja(){
-            var botaoNao = document.getElementById("nao")
+            var botaoNao = document.getElementById("nao");
 
             var larguraJanela = window.innerWidth;
             var alturaJanela = window.innerHeight;
@@ -74,13 +78,8 @@
 
             botaoNao.style.left = aleatorioX + "px";
             botaoNao.style.top = aleatorioY + "px";
-
-
         }
     </script>
 
-
-
-    
 </body>
 </html>
