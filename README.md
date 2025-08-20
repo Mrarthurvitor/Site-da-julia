@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +7,11 @@
     <title>Paraaaabeeeenssss JULIAAAAAAA</title>
 
     <style>
-        body{
+        body {
             background-color: red;
         }
 
-        .painel{
+        .painel {
             margin: auto;
             background-color: white;
             width: 500px;
@@ -21,7 +21,7 @@
             padding-top: 50px;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
-        #sim{
+        #sim {
             height: 40px;
             width: 60px;
             background-color: red;
@@ -31,7 +31,7 @@
             margin-left: -50px;
             cursor: pointer;
         }
-        #nao{
+        #nao {
             position: absolute;
             height: 40px;
             width: 60px;
@@ -42,9 +42,7 @@
             margin-left: 10px;
             cursor: pointer;
         }
-
     </style>
-
 </head>
 <body>
 
@@ -54,17 +52,16 @@
         <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho fofo apaixonado">
 
         <h2>Você é incrível né?? 💖</h2>
-        
-        <!-- CORREÇÃO: agora o href tem aspas -->
+
+        <!-- Link agora com aspas (corrigido) -->
         <a href="https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing" target="_blank">
             <button id="sim">Sim!</button>
         </a>
         <button onmouseover="fuja()" id="nao">Não!</button>
-        
     </div>
 
     <script>
-        function fuja(){
+        function fuja() {
             var botaoNao = document.getElementById("nao");
 
             var larguraJanela = window.innerWidth;
