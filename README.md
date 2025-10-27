@@ -114,7 +114,7 @@
     <div class="painel" id="painel">
         <h1>Parabéns Júlia 🎉</h1>
         <img src="https://media.tenor.com/124xNuBcUCEAAAAj/kulka.gif" alt="Ursinho fofo apaixonado">
-        <h2>Você é incrível né?? 💖</h2>
+        <h2>Você tem noção de quanto você é especial??? 💖</h2>
 
         <a href="https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing" target="_blank">
             <button id="sim">Sim!</button>
@@ -142,3 +142,5 @@
 
 </body>
 </html>
+
+
