@@ -4,32 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paraaaabeeeenssss JULIAAAAAAA</title>
-
     <style>
-        /* Fundo com gradiente suave */
+        /* Fundo animado com gradiente suave */
         body {
-            background: linear-gradient(135deg, #ff6b6b, #ffb88c);
+            background: linear-gradient(135deg, #ff6b6b, #ffb88c, #ff9a8b, #ff6b6b);
+            background-size: 400% 400%;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            overflow: hidden;
+            font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+            overflow: auto;
+            animation: gradientShift 8s ease infinite;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Partículas de fundo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: floatParticle 15s infinite linear;
         }
 
         /* Painel principal */
         .painel {
             position: relative;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             text-align: center;
             padding: 40px 30px;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
-            animation: aparecer 1.5s ease-in-out;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), 0 0 50px rgba(255, 107, 107, 0.3);
+            animation: aparecer 1.5s ease-in-out, pulse 3s infinite;
             transition: transform 0.3s ease;
             width: 400px;
             max-width: 90%;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
         }
 
         .painel:hover {
@@ -37,44 +62,183 @@
         }
 
         h1 {
-            color: red;
+            color: #ff3366;
             text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
             font-size: 2rem;
             margin-bottom: 10px;
+            animation: textGlow 2s infinite alternate;
         }
 
         h2 {
-            color: red;
+            color: #ff3366;
             font-size: 1.3rem;
             margin-top: 15px;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin: 15px 0;
         }
 
         img {
             width: 220px;
             height: auto;
-            margin-top: 10px;
             border-radius: 10px;
             animation: flutuar 3s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4081;
+            opacity: 0;
+            animation: heartFloat 5s linear infinite;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
         }
 
         button {
             height: 45px;
             width: 80px;
-            background-color: red;
             border: none;
             border-radius: 12px;
             color: white;
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            margin: 10px;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
             position: relative;
+            overflow: hidden;
+        }
+
+        button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        button:hover:before {
+            left: 100%;
         }
 
         button:hover {
-            background-color: #ff4040;
             transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #sim {
+            background: linear-gradient(45deg, #ff4081, #ff6b6b);
+        }
+
+        #nao {
+            background: linear-gradient(45deg, #2196F3, #03A9F4);
+        }
+
+        /* Cronômetro */
+        .countdown {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: aparecer 2s ease-in-out;
+        }
+
+        .countdown h3 {
+            color: #ff3366;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff3366;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            min-width: 60px;
+            margin-bottom: 5px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Efeito de confete */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        /* Contador de cliques */
+        .contador {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #ff3366;
+            font-weight: bold;
+        }
+
+        /* Efeito de luzes */
+        .light {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+            animation: lightPulse 4s infinite alternate;
+            z-index: -1;
         }
 
         /* Animações */
@@ -86,6 +250,40 @@
         @keyframes aparecer {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), 0 0 50px rgba(255, 107, 107, 0.3); }
+            50% { box-shadow: 0 0 35px rgba(255, 0, 0, 0.6), 0 0 70px rgba(255, 107, 107, 0.5); }
+            100% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.4), 0 0 50px rgba(255, 107, 107, 0.3); }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 8px rgba(255, 0, 0, 0.6); }
+            to { text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 25px rgba(255, 107, 107, 0.6); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(calc(100vw * var(--x-end))); }
+        }
+
+        @keyframes heartFloat {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(calc(20px * var(--x-direction))) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes lightPulse {
+            0% { transform: scale(0.8); opacity: 0.3; }
+            100% { transform: scale(1.5); opacity: 0.7; }
         }
 
         /* Responsividade */
@@ -106,23 +304,160 @@
                 width: 70px;
                 font-size: 14px;
             }
+            
+            .contador {
+                font-size: 0.8rem;
+                padding: 3px 8px;
+            }
+            
+            .time-value {
+                font-size: 1.4rem;
+                min-width: 50px;
+                padding: 8px;
+            }
+            
+            .countdown h3 {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Partículas de fundo -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Luzes de festa -->
+    <div class="lights" id="lights"></div>
+    
+    <!-- Contador de cliques -->
+    <div class="contador" id="contador">Cliques no Sim: 0</div>
 
     <div class="painel" id="painel">
         <h1>Parabéns Júlia 🎉</h1>
-        <img src="https://media.tenor.com/124xNuBcUCEAAAAj/kulka.gif" alt="Ursinho fofo apaixonado">
+        
+        <div class="image-container">
+            <img src="https://media.tenor.com/124xNuBcUCEAAAAj/kulka.gif" alt="Ursinho fofo apaixonado">
+            <div class="hearts" id="hearts"></div>
+        </div>
+        
         <h2>Você tem noção de quanto você é especial??? 💖</h2>
 
-        <a href="https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing" target="_blank">
-            <button id="sim">Sim!</button>
-        </a>
-        <button id="nao" ontouchstart="fuja()" onmouseover="fuja()">Não!</button>
+        <div class="buttons">
+            <a href="https://drive.google.com/drive/folders/1eg2xGV-_h4ak2CgVtUU_OGmoBW218WV9?usp=sharing" target="_blank">
+                <button id="sim">Sim!</button>
+            </a>
+            <button id="nao" ontouchstart="fuja()" onmouseover="fuja()">Não!</button>
+        </div>
+        
+        <!-- Cronômetro regressivo -->
+        <div class="countdown">
+            <h3>Próximo aniversário em:</h3>
+            <div class="timer">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Dias</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Horas</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutos</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Segundos</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Variáveis globais
+        let contadorCliques = 0;
+        
+        // Criar partículas de fundo
+        function criarParticulas() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamanho aleatório
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Posição inicial aleatória
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Cor aleatória
+                const colors = ['rgba(255, 255, 255, 0.7)', 'rgba(255, 107, 107, 0.5)', 'rgba(255, 184, 140, 0.5)'];
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Duração e direção aleatórias
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.setProperty('--x-end', Math.random() * 2 - 1);
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Criar corações flutuantes
+        function criarCoracoes() {
+            const heartsContainer = document.getElementById('hearts');
+            const heartCount = 8;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                
+                // Posição inicial aleatória
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                // Atraso aleatório
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                // Direção aleatória
+                heart.style.setProperty('--x-direction', Math.random() > 0.5 ? 1 : -1);
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Criar luzes de festa
+        function criarLuzes() {
+            const lightsContainer = document.getElementById('lights');
+            const lightCount = 5;
+            
+            for (let i = 0; i < lightCount; i++) {
+                const light = document.createElement('div');
+                light.classList.add('light');
+                
+                // Posição aleatória
+                light.style.left = `${Math.random() * 100}vw`;
+                light.style.top = `${Math.random() * 100}vh`;
+                
+                // Tamanho aleatório
+                const size = Math.random() * 150 + 50;
+                light.style.width = `${size}px`;
+                light.style.height = `${size}px`;
+                
+                // Atraso aleatório
+                light.style.animationDelay = `${Math.random() * 4}s`;
+                
+                lightsContainer.appendChild(light);
+            }
+        }
+        
+        // Função para o botão "Não" fugir
         function fuja() {
             const botaoNao = document.getElementById("nao");
             const painel = document.getElementById("painel");
@@ -138,8 +473,111 @@
             botaoNao.style.left = aleatorioX + "px";
             botaoNao.style.top = aleatorioY + "px";
         }
+        
+        // Efeito de confete
+        function criarConfete() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            const confettiCount = 150;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Cor aleatória
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Posição inicial aleatória
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.top = `${Math.random() * 100}vh`;
+                
+                // Tamanho aleatório
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                
+                // Forma aleatória (círculo ou quadrado)
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                }
+                
+                // Animação
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remover após a animação
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+            
+            // Adicionar estilo de animação de confete dinamicamente
+            if (!document.getElementById('confetti-style')) {
+                const style = document.createElement('style');
+                style.id = 'confetti-style';
+                style.textContent = `
+                    @keyframes confettiFall {
+                        0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+                        100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Atualizar contador de cliques
+        function atualizarContador() {
+            contadorCliques++;
+            document.getElementById('contador').textContent = `Cliques no Sim: ${contadorCliques}`;
+            
+            // Efeito especial a cada 5 cliques
+            if (contadorCliques % 5 === 0) {
+                criarConfete();
+            }
+        }
+        
+        // Cronômetro regressivo para 29 de novembro de 2026
+        function atualizarCronometro() {
+            const dataAniversario = new Date('November 29, 2026 00:00:00').getTime();
+            const agora = new Date().getTime();
+            const diferenca = dataAniversario - agora;
+            
+            // Cálculos para dias, horas, minutos e segundos
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+            
+            // Atualizar a exibição
+            document.getElementById('days').textContent = dias < 10 ? '0' + dias : dias;
+            document.getElementById('hours').textContent = horas < 10 ? '0' + horas : horas;
+            document.getElementById('minutes').textContent = minutos < 10 ? '0' + minutos : minutos;
+            document.getElementById('seconds').textContent = segundos < 10 ? '0' + segundos : segundos;
+            
+            // Se a data já passou, mostrar mensagem
+            if (diferenca < 0) {
+                document.querySelector('.countdown h3').textContent = 'Feliz Aniversário! 🎉';
+                document.querySelector('.timer').innerHTML = '<div class="time-unit"><div class="time-value">🎂</div><div class="time-label">Celebre!</div></div>';
+                clearInterval(cronometroInterval);
+            }
+        }
+        
+        // Inicializar efeitos
+        window.onload = function() {
+            criarParticulas();
+            criarCoracoes();
+            criarLuzes();
+            
+            // Iniciar cronômetro
+            atualizarCronometro();
+            const cronometroInterval = setInterval(atualizarCronometro, 1000);
+            
+            // Adicionar efeito de confete ao botão Sim
+            document.getElementById('sim').addEventListener('click', function(e) {
+                atualizarContador();
+                criarConfete();
+            });
+        };
     </script>
-
 </body>
 </html>
-
